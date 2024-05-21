@@ -7,13 +7,8 @@ CAST  type tinyint to boolean drop typemod,
       type smallint to boolean drop typemod,
       type datetime to timestamp drop default drop typemod using zero-dates-to-null,
       type int to integer drop typemod,
-      type bigint when default '0' to "bigint default 0" drop default drop typemod,
-      column QUARTZ_BLOB_TRIGGERS.BLOB_DATA to bytea,
-      column QUARTZ_CALENDARS.CALENDAR to bytea,
-      column QUARTZ_JOB_DETAILS.JOB_DATA to bytea,
-      column QUARTZ_TRIGGERS.JOB_DATA to bytea,
-      type longblob to oid
+      type bigint when default '0' to "bigint default 0" drop default drop typemod
 
 alter schema 'lportal' rename to 'public'
 
-after load execute rules.sql;
+after load execute large_objects.sql execute rules.sql;

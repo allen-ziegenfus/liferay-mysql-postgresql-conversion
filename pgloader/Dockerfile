@@ -1,6 +1,7 @@
-FROM dimitri/pgloader:v3.6.7
+FROM dimitri/pgloader:ccl.latest
 
 ADD lportal.load /
+ADD large_objects.sql /
 ADD rules.sql /
 
-ENTRYPOINT /usr/local/bin/pgloader /lportal.load
+ENTRYPOINT /usr/local/bin/pgloader --verbose /lportal.load
